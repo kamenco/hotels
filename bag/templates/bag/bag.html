@@ -51,7 +51,7 @@
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">${{ item.product.price }}</p>
-                                        <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                                    <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><small>Remove</small></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -79,6 +79,7 @@
                             </tr>
                         </table>
                     </div>
+               
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
                     <a href="{% url 'products' %}" class="btn btn-outline-black rounded-0 btn-lg">
@@ -91,7 +92,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+   <!-- <script type="text/javascript">
         
         // Remove item and reload on click
         $('.remove-item').click(function(e) {
@@ -106,5 +107,33 @@
                  location.reload();
              });
         })
+    </script>-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Remove item and reload on click
+            $('.remove-item').click(function(e) {
+                e.preventDefault();  // Prevent default anchor behavior
+    
+                var csrfToken = "{{ csrf_token }}";  // Get CSRF token from template
+                var itemId = $(this).attr('id').split('remove_')[1];  // Extract item ID
+                var url = `/bag/remove/${itemId}/`;  // Make sure the URL is correct for your Django route
+                var data = {
+                    'csrfmiddlewaretoken': csrfToken,
+                    'item_id': itemId
+                };
+    
+                // AJAX POST request to remove item
+                $.post(url, data)
+                    .done(function(response) {
+                        location.reload();  // Reload the page on success
+                    })
+                    .fail(function(xhr, status, error) {
+                        console.error("Error details:", xhr.responseText);
+                        alert('Error removing item from the bag. Please try again.');
+                    });
+            });
+        });
     </script>
+    
+    
 {% endblock %}

@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, HttpResponse
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404, redirect
 
-# Create your views here.
 
 def view_bag(request):
     """ A view that renders the bag contents page """
@@ -20,6 +21,19 @@ def add_to_bag(request, item_id):
         bag[item_id] = quantity
 
     request.session['bag'] = bag
-    print(request.session['bag'])
     return redirect(redirect_url)
-    
+
+def remove_from_bag(request, item_id):
+    """Remove an item from the shopping bag"""
+    try:
+        # Get the shopping bag from the session
+        bag = request.session.get('bag', {})
+
+        # Check if the item is in the bag and remove it
+        if item_id in bag:
+            del bag[item_id]
+            request.session['bag'] = bag  # Update the session with the new bag data
+            return JsonResponse({'success': True})
+
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
