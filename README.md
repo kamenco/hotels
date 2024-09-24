@@ -16,29 +16,6 @@
 12. [Credits](#credits)
 
 
-[Bugs and Issues](#bugs-and-issues)
-
-![The remove link is not working!](ER_bootstrap_before_js.png "The remove link is not working.")
-
-When clicked on the link for removing the items in the bag.html showed the above message in the console. JQuery was not included before  bottstrap's JavaScript.This error was resolved by changing the order of CDN links in the head of base.html as follows:
-
-       <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
-      
-
-![Pop up message appears when clicked the remove link!](ER_json_not_working.png "The remove link is not working.")
-
-When clicked the link for removing the items in the bag.html was not working, and showed a message "Error removing item from the bag. Please try again." This bug was resolved by adding:
-The 'item_id' : itemId to the variable var data = {
-
-       var data = {
-                    'csrfmiddlewaretoken': csrfToken,
-                    'item_id': itemId
-      
-This happens only after I made sure the URL in the AJAX request (/bag/remove/${itemId}/) matches the correct route for removing an item in Django.
-
 ### Issues to resolve
 
 Removed integrity checks for jQuery to avoid the integrity validation issue.
@@ -143,10 +120,10 @@ Given more time to invest in the project, I would like to implement some more fe
  
 ## [Agile planning](#agile-planning)
 
-Severel steps were taken into consideration to develop this project. **Requirements** were detailed, **analyses** performed to see what technologies might be used, the **design** was made using bootstrap and CSS combined the **development** was carried out on gitpod.io, **testing** was made only manually, the authomatic testing was abondened due to lack of time. **User stories** were found regarding the usage of the contact submit form, for phones, which are widely used for internet it is difficult, or almost impossible to put the phone numbers with hifens.
-Several development cycles were followed **1st cycle iteration** creating the HTML and CSS structure. **2nd cycle iteration** implementing Jinja template language and Flask. **3rd cycle iteration** creating the JSON database for the menues. **4th cycle iteration** Creating SQLLite database with models for categories and tasks. **5th cycle iteration** Creating the contact page with the submit form. Pure python project was abandoned as too complex and unfeasible, in terms of user and password requirements. Implemented the technology ofEmailjs.com for the form submission.
+Severel steps were taken into consideration to develop this project. **Requirements** were detailed, **analyses** performed to see what technologies might be used, the **design** was made using bootstrap and CSS combined the **development** was carried out on gitpod.io, **testing** was made only manually, the authomatic testing was pade with python. **User stories** are devided into four sections + Registration and user accounts +Viewing and navigating through the products + sorting and searching + Purchasing and checkout.
+Several development cycles were followed **1st cycle iteration** creating the HTML and CSS structure. **2nd cycle iteration** implementing Django template language and logic. **3rd cycle iteration** creating the JSON database for the hotels. **4th cycle iteration** Creating SQLLite database with models for categories and products. **5th cycle iteration** Creating the checkout page and implementation of the payment process using stripe.com
 
-![Kanban board!](taskmanager/static/images/kanban.png "Kanban board made with jira")
+![Kanban board!](KANBAN.png "Showing the user stories.")
 
 ---
 
@@ -209,30 +186,42 @@ Lighthouse runs an audit of your website and feeds back a set of scores for acce
 ---
 ## [Bugs and Issues](#bugs-and-issues)
 
-![Task undefined issue!](taskmanager/static/images/task_undefined.png "Task undefined bug")
-This bug was solved by discoverin that in the task.html some rows have been deleted.
 
-![template not found!](taskmanager/static/images/templ_not_found.png "Template not found bug")
+[Bugs and Issues](#bugs-and-issues)
 
-This error was cause because Flask was not configured to look in the right place. 
+![The remove link is not working!](ER_bootstrap_before_js.png "The remove link is not working.")
 
-     app = Flask(__name__, template_folder='templates')
+When clicked on the link for removing the items in the bag.html showed the above message in the console. JQuery was not included before  bottstrap's JavaScript.This error was resolved by changing the order of CDN links in the head of base.html as follows:
 
+       <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-![Mailman added requirements!](taskmanager/static/images/mailman.png "Mailman added to requirements.txt")
+      
 
-This bug was fixed by adding the flask_mailman==0.3.0 to the requirements.txt
+![Pop up message appears when clicked the remove link!](ER_json_not_working.png "The remove link is not working.")
 
-![Build error bug!](taskmanager/static/images/buid_error.png "Build error bug")
+When clicked the link for removing the items in the bag.html was not working, and showed a message "Error removing item from the bag. Please try again." This bug was resolved by adding:
+The 'item_id' : itemId to the variable var data = {
 
-Flask application url_for function failed to find the endpoint. The suggestion Did you mean update_task instead? indicated that update_task is the valid endpoint. There was a typo in the endpoint name.
+       var data = {
+                    'csrfmiddlewaretoken': csrfToken,
+                    'item_id': itemId
+      
+This happens only after I made sure the URL in the AJAX request (/bag/remove/${itemId}/) matches the correct route for removing an item in Django.
 
-![Crash!](taskmanager/static/images/crash.png "Site crashes")
+![Bug appears when try to send card details!](ER_stripe_basic_activity.png "Stripe is not working.")
 
-The bug was caused by unresolved dependencies: Dependencies specified in requirements.txt namely Flask-SQLAlchemy was installe at lower version. Flask-SQLAlchemy was upgraded == 3.0.3
- The version conflicts caused the failure.
- 
-![CSS bug!](taskmanager/static/images/css_bug.png "CSS bug")
+This bug is unresolved.
+
+![Automatic pyton test!](TEST_STRIPE_KEY_AUTOMATIC.png "Python test automatic.")
+
+I am checkin the validity of the API key. We see there is no error in the terminal.
+
+![Automatic pyton test!](TEST_STRIPE.png "Python test automatic.")
+
+Checking the validity with a wrong key and we see Stripe Error: 
+Invalid API key provided: sk_test:*********************XXX
 
 ---
 
