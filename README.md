@@ -223,6 +223,10 @@ I am checkin the validity of the API key. We see there is no error in the termin
 Checking the validity with a wrong key and we see Stripe Error: 
 Invalid API key provided: sk_test:*********************XXX
 
+![When using link customer payment method!](ER_LINK_WRONG.png "I get a different error.")
+
+The error stripe.PaymentIntent.create disappeared now the terminal givs another error"POST/checkout_cash_checkout_data/ HTTP/1.1" 404
+
 ---
 
 ## [404.html](#notfound-page)
