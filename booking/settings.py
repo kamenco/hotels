@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import dj_database_url
 if os.path.exists("env.py"):
     import env
 
@@ -28,7 +29,7 @@ SECRET_KEY = 'django-insecure-gq_@z5ot#b#h*^!1-nbp4ply))o^8nj+@x-866gjubu9ydh*+d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net']
+ALLOWED_HOSTS = ['8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net', 'https://lasthotel-8f638c1487e4.herokuapp.com/']
 
 
 CSRF_TRUSTED_ORIGINS = [
@@ -125,14 +126,36 @@ WSGI_APPLICATION = 'booking.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# DATABASES = {
+#   'default': {
+#       'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#   }
+#}
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+if 'DATABASE_URL' in os.environ:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
-
+"""
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     }
+ }
+"""
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
