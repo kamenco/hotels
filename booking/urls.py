@@ -23,7 +23,7 @@ from django.http import HttpResponse
 def empty_favicon(request):
     return HttpResponse(status=204)
 
-    
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -34,8 +34,3 @@ urlpatterns = [
     path('profile/', include('profiles.urls')),
     path('favicon.ico', empty_favicon),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
-
-
-

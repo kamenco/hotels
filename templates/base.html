@@ -40,6 +40,9 @@
 
     {% block extra_js %}
     {% endblock %}
+    {% block media %}
+    <link rel="icon" href="{% get_media_prefix %}logo.png" type="image/png">
+    {% endblock %}
 
     <title>Hotel Booking {% block extra_title %}{% endblock %}</title>
   </head>
