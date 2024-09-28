@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['https://lasthotel-8f638c1487e4.herokuapp.com', 'localhost',]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net',
+    'https://lasthotel-8f638c1487e4.herokuapp.com',
     # Add other trusted origins as needed
 ]
 
