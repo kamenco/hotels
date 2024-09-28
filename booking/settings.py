@@ -27,15 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-gq_@z5ot#b#h*^!1-nbp4ply))o^8nj+@x-866gjubu9ydh*+d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'https://lasthotel-8f638c1487e4.herokuapp.com',
-    'https://8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net',
-    'localhost',
 ]
 
-
+# 'https://8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net',
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net',
