@@ -30,9 +30,11 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
+
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net', 'localhost',]
+ALLOWED_HOSTS = ['https://lasthotel-8f638c1487e4.herokuapp.com', 'localhost',]
 
 # , 
 
