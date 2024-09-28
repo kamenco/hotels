@@ -20,10 +20,6 @@ from django.conf.urls.static import static
 from django.http import HttpResponse
 
 
-def empty_favicon(request):
-    return HttpResponse(status=204)
-
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),

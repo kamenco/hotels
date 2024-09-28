@@ -29,11 +29,9 @@ SECRET_KEY = 'django-insecure-gq_@z5ot#b#h*^!1-nbp4ply))o^8nj+@x-866gjubu9ydh*+d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    'https://lasthotel-8f638c1487e4.herokuapp.com',
-]
+ALLOWED_HOSTS = ['8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net', 'localhost',]
 
-# 'https://8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net',
+# , 'https://lasthotel-8f638c1487e4.herokuapp.com'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net',
@@ -200,6 +198,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
