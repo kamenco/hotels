@@ -10,9 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import dj_database_url
 if os.path.exists("env.py"):
     import env
+
+
 
 from pathlib import Path
 from decouple import config
@@ -32,7 +37,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 SECRET_KEY = 'django-insecure-gq_@z5ot#b#h*^!1-nbp4ply))o^8nj+@x-866gjubu9ydh*+d'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [ 'lasthotel-8f638c1487e4.herokuapp.com', '8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net', 'localhost',]
 
@@ -66,6 +71,8 @@ INSTALLED_APPS = [
       
     # Other
     'crispy_forms',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -198,9 +205,28 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'djd581dg4',
+    'API_KEY': '364932165925811',
+    'API_SECRET': '*********************',
+}
+
+
+# CLOUDINARY_URL=cloudinary://693381949958851:*********************@de075mfik
+
+
+# Static files
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+
+# Media files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# added second similar
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
