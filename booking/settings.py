@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profiles',
+    'storages',
       
     # Other
     'crispy_forms',
@@ -229,6 +230,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -238,3 +240,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_CURRENCY='usd'
 STRIPE_PUBLIC_KEY=os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY=os.environ.get('STRIPE_SECRET_KEY')
+# AWS S3 Settings
+AWS_ACCESS_KEY_ID = '<your_aws_access_key_id>'
+AWS_SECRET_ACCESS_KEY = '<your_aws_secret_access_key>'
+AWS_STORAGE_BUCKET_NAME = '<your_bucket_name>'
+AWS_S3_REGION_NAME = '<your_aws_region>'  # e.g., 'us-west-1'
+
+# Optional settings
+AWS_S3_FILE_OVERWRITE = False  # Avoid overwriting files with the same name
+AWS_DEFAULT_ACL = None  # No default ACL, necessary for newer AWS S3 versions
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_QUERYSTRING_AUTH = False  # Optional: to remove query parameter from file URL
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+STATIC_URL = f'https://{kamenbucket}.s3.amazonaws.com/static/'
