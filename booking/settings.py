@@ -235,8 +235,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# DATABASE_URL = postgres://upnxcgjrbe3:thcQPU910yo3@ep-gentle-mountain-a23bxz6h.eu-central-1.aws.neon.tech/ranch_mom_sulk_574769
-
 # stripe
 STRIPE_CURRENCY='usd'
 STRIPE_PUBLIC_KEY=os.environ.get('STRIPE_PUBLIC_KEY')
