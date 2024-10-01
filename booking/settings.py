@@ -38,7 +38,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = [ 'lasthotel-8f638c1487e4.herokuapp.com', '8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net', 'localhost',]
 
-# , SECRET_KEY = 'django-insecure-gq_@z5ot#b#h*^!1-nbp4ply))o^8nj+@x-866gjubu9ydh*+d'
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net',
