@@ -201,19 +201,30 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # added second similar
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATICFILES_DIRS = [BASE_DIR / 'static']
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# NEW SETTINGS FROM CHAT GPT
+# import os  # Make sure to import os at the top of your settings.py
+
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+
+# The directory where Django will look for additional static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# The directory where collected static files will be stored
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Whitenoise settings
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+ 
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
