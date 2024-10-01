@@ -10,9 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 import os
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
 import dj_database_url
 if os.path.exists("env.py"):
     import env
@@ -71,11 +68,10 @@ INSTALLED_APPS = [
       
     # Other
     'crispy_forms',
-    'cloudinary',
-    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -205,28 +201,21 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'djd581dg4',
-    'API_KEY': '364932165925811',
-    'API_SECRET': '*********************',
-}
-
-
-# CLOUDINARY_URL=cloudinary://693381949958851:*********************@de075mfik
-
-
-# Static files
-STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
-
-# Media files
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # added second similar
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Whitenoise settings
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
