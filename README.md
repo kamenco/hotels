@@ -1,34 +1,14 @@
-# hotels
 
 
-## Table of Content 
-1. [Wireframe](#wireframe)
-2. [UX Description](#ux-description)
-3. [Technologies used](#technologies-used)
-4. [Website Features](#website-features)
-5. [Features to implement](#other-features)
-6. [Agile palnning](#agile-planning)
-7. [Project structure](#project-structure)
-8. [Testing and Validation](#testing-and-validation)
-9. [Bugs and Issues](#bugs-and-issues)
-10. [404 page](#notfound-page)
-11. [Deployment](#deployment)
-12. [Credits](#credits)
-
-
-### Issues to resolve
-
-Removed integrity checks for jQuery to avoid the integrity validation issue.
-
-
-
-# Varna Eats - Restaurant
+# Hotel Booking Application
 
 ## Performance of the web page on different devices
 
-![Responsive on phone!](taskmanager/static/images/responsive.png "Responsive on phone")
+![Responsive on phone!](RES_phone.png "Responsive on phone.")
+![Responsive on ipad!](RES_ipad.png "Responsive on ipad.")
+![Responsive on laptop!](RES.png "Responsive on phonelaptop.")
 
-[Click on this link to visit the site on Heroku](https://dines-kamen-9b44aac7c04a.herokuapp.com/)
+[Click on this link to visit the site on Heroku](https://lasthotel-8f638c1487e4.herokuapp.com/)
 
 
 # Content
@@ -52,57 +32,53 @@ Removed integrity checks for jQuery to avoid the integrity validation issue.
 
 ## [Wireframe](#wireframe)
 
-Varna Eats is a web application that allows users to view the menu, make reservations, and manage tasks. This project is built using Flask and is deployed on Heroku.
+Hotel booking ia an application for making hotel reservations in two hotels in the seaside resort of Golden Sands - Bulgaria. The hotel owners can take online booking by receiving payments directly from the checkout page by the implemented stripe payment. From the admin panel the hotel owners can review their orders (bookings), update their passwords and products.  This project is built using Django and is deployed on Heroku.
 
 ---
 
 ## [UX Description](#ux-description)
 
-This site was designed predominantly for restaurant owners, where they can present their restaurants, the menus, and where they can update the manues using json database, they can also add recepies, update recepies and delete recepies with using jaso as a database. Form the application taskmanager, using databaase SQLLIte the owner or the manager of the restaurant can add tasks, update tasks and delete tasks. The site has also a interactive javascript map facilitating the customers by showing the restaurant's whereabouts. 
+This site was designed predominantly for hotel owners, and holiday makers. The users can make reservations payng from the checkout page by the stripe technology. The user receives also email with the reservation period, reservation number and overnights number, number of adults and children. The site could be developped to fully bookable site for tourist travel and business trips, with implementation of the so called dynamic packaging.
 
-The layout is kept pretty simple, with three pages describing the Bulgarian cuisine, the menu page and the contact page from where the customer can make reservations by filling and sending the form. At the far right is the login button from where the owner can log in to update, delete and add recepies of the menu page. From there he can also add tasks, update and delete tasks, helping the owner to better organize his business.
+The layout is kept pretty simple, with the home page having link to the product page from where the site user can make the booking, by choosing the products by their price or cathegory.
 
 ---
 
 ## [Technologies used](#technologies-used)
 
-- HTML5, Jinja, . Used to structure my website. There is only one page base.html of this website  and using Jinga mark up the rest of the pages extend the base.html
-
- Semantic element have been used like container, row, form, div.
- 
-  Responsive design was implemented by the code in the head with metatag defining the control of page's dimensions and scaling.
-
+- HTML5, Django templates, were used to structure my website. There is only one page base.html of this website  and using Django template mark up the rest of the pages extend the base.html Semantic element have been used like container, row, form, div.
+ Responsive design was implemented by the code in the head with metatag defining the control of page's dimensions and scaling.
 
 - CSS3, Bootstrap: Bootstrap container class provides a responsive fixed-width container.
  The row class is used to create a horizontal group of columns.Justify-content-center: This class centers the content horizontally within the row. col-sm-8: sets the width of the content to 8 columns out of a 12-column grid on small and larger devices, and you can adjust it as needed.
- btn-block uset to buttons for full-width styling. button classes to btn-primary and btn-danger for better visual distinction.
+ btn-block uset to buttons for full-width styling. button classes to btn-primary and btn-danger for better visual distinction. Responsive web design is used to resize, and shrink, the content to make it look good on any screen.  Box sizing border box was used to  padding and border of element's total width and height. Media query with breakpoint of 420px was used for the responsiveness of the page. Hover css was used on the nav bar onclicking the login, and also onclicking the bag logo in the nav panel. However additional html page were added to the base.html and index.html like main-nav.html and mobile-top-header.html by the Django template language using 
 
- Responsive web design is used to resize, and shrink, the content to make it look good on any screen.  Box sizing border box was used to  padding and border of element's total width and height. Media query with breakpoint of 420px was used for the responsiveness of the page. Hover css was used on the nav bar onclicking the login, and also onclicking the buttons in the nav panel.
+           {% 'includes/mobile-top-header.html' %} 
+            and {% 'includes/main-nav.html' %}
 
-- JavaScript. Used to provide functionality to my website. Event listener used is to handle form submission and send the form data using EmailJS. Included the EmailJS SDK script in the contact.html file. Javascript was used to embed the google map. JavaScript function confirmDelete was used for the defensive design of the delete task. confirmDelete function is used from base.htm  confirmDeleteRecipe and confirmDeleteTask functions are defined and utilized within individual HTML templates.Onsubmit attribute in the delete form calls confirmDelete(event), which asks for confirmation before submitting the delete form. By clearly defining separate routes and ensuring the JavaScript functions are scoped to specific pages, I avoid collisions between the delete actions on different pages. This approach helps to ensure that both the delete functionality for recipes and tasks work independently without interfering with each other.
+- JavaScript. Used to provide functionality to my website. Event listener used is to handle form submission and send the form data using Stripe. Onsubmit attribute in the order form makes connection with the stripe application and displaying the order to the  customer by loading checkout-success.html
 
-- Python3 Datetime and dotenv, flask libraries are imported in the main python file. SQLAlchemy is installed,JSON is used for the menu database. Database models are defined for Cathegories and tasks.
-The delete_task, add_task, update_task routes are used to correctly handle POST requests to delete, update and add a task and redirect back to the tasks list. Used url_for function to correctly points to the Flask routes. Delete_task, update-task, and add_task routes accept the correct HTTP methods (GET, POST). Ensured Unique URLs for Delete Actions. Making sure the URLs for the delete actions in both update_menu.html and update_task.html are distinct. Handling POST Requests: The update_menu function is updated to load recipes at the beginning. If the request is a POST request and the form contains 'add', it adds the new recipe. If the form contains 'delete', it deletes the selected recipe and writes the updated list back to list.json.
+- Python3 Datetime and dotenv, python libraries are imported in the main python file. Postgres is installed,JSON is used for the products database. Database models are defined for Cathegories and Products.
+. Ensured Unique URLs in the project.urls file and the applications urls.py. 
 
 - Github - The cloud based service for hosting repositories for over 73 million developers
 - Git - Used to add, commit and push my changes to the server and to create a repository with the help of The Code Institute template.
 - Favicon.io - Used to source my favicon icons for my website.
 - Google Fonts - Used to source different fonts in my css file. Google font were used Roboto.
-- CoralDraw was used to illustrate this page with the flow chart's logic.
-- This page was made with Visual Studio Code on gitpod.io, and for deploying the pages the 
-git add . git commit and git push commands were used.
-- Gitpod.io was used to work on the project.
-- Heroku was used to deploy my site.
+- This page was made with Visual Studio Code on codeinstitute cloud IDE, and for deploying the pages the git add . git commit and git push commands were used.
+- Whitenoise is installed to handle the static files to be displayed on heroku.
+- AWS S3 is installed to handle the dynamic files, still not fully implemented.
+- Heroku was used to deploy the site.
   
 ---
 
 ## [Website Features](#website-features)
 
-- View the menu with various recepies.
-- Make reservations through a contact form.
-- Login and manage the menu (add, update, delete recipes).
-- Task management functionality including adding, updating, and deleting tasks.
-- Send email for reservations
+- View the products page.
+- Make reservations through a contact form and make payments.
+- Login and manage the products, the orders.
+- Send emails to the customer and display checkout_success.html.
+- Send email for reservations.
 
 ---
 
@@ -110,17 +86,28 @@ git add . git commit and git push commands were used.
 
 Given more time to invest in the project, I would like to implement some more features: 
 
-- The menu page except menues to have prices for each dish with an option for online payment and booking, and also a delivery for home.
+- The products page should have date time dropdown picker used to dynamically pick from calendar the stay period, update the total when the customer chooses the product (hotel room). This feature will be implemented in the future. Java Script must be used to dynamically change the total. This feature is not implemented in this site. A database should be created to check if there are rooms available and if there are not should display a message There are no rooms available. 
+
+![Date in Date Out implementation!](CHECK.png "Date in date out implementation")
   
-- The form from the contact page should have dropdown menu for date and time of the reservation, also dropdaown for the main course, starters, desserts, so that those booking for functions, celebrations, receptions and parties can fix their menu beforehnd online.
-- To fulfil authomatic testing. For now only manual testing is carried out.  
-- This project can target restaurant owners and catering services.
+- The form of the checkout page should send the data to the stripe, it makes attempt but get an error which I have explained in the bugs section, and this problem has not been solved.
+
+- The AWS S3 was installed but not fully implemented and the dynamic files and pictures are not displayed on the heroku server.
+
+- This project fails to make any payments, the checkout page is displayed properly on the development server, makes an attempt but is not making an order, and the attempt is not successful in the stripe dashboard, does not create order in the admin panel.
+
+- 404.html file is not implemented ad many basic functionality are still not working.
   
  ---
  
 ## [Agile planning](#agile-planning)
 
-Severel steps were taken into consideration to develop this project. **Requirements** were detailed, **analyses** performed to see what technologies might be used, the **design** was made using bootstrap and CSS combined the **development** was carried out on gitpod.io, **testing** was made only manually, the authomatic testing was pade with python. **User stories** are devided into four sections + Registration and user accounts +Viewing and navigating through the products + sorting and searching + Purchasing and checkout.
+Severel steps were taken into consideration to develop this project. **Requirements** were detailed, **analyses** performed to see what technologies might be used, the **design** was made using bootstrap and CSS combined the **development** was carried out on gitpod.io, **testing**  manually, and authomated was not made. **User stories** are devided into four sections. 
+  + Registration and user accounts 
+  + Viewing and navigating through the products 
+  + Sorting and searching 
+  + Purchasing and checkout.
+
 Several development cycles were followed **1st cycle iteration** creating the HTML and CSS structure. **2nd cycle iteration** implementing Django template language and logic. **3rd cycle iteration** creating the JSON database for the hotels. **4th cycle iteration** Creating SQLLite database with models for categories and products. **5th cycle iteration** Creating the checkout page and implementation of the payment process using stripe.com
 
 ![Kanban board!](KANBAN.png "Showing the user stories.")
@@ -129,60 +116,66 @@ Several development cycles were followed **1st cycle iteration** creating the HT
 
  ## [Project structure](#project-structure)
 
-       |-- run.py
-      |-- form_handler.py
-      |-- env.py
-      |-- requirements.txt
-      |-- taskmanager/ 
-      | |-- init.py
-      | |-- templates/
-      | | |-- base.html
-      | | |-- index.html
-      | | |-- menu.html
-      | | |-- contact.html
-      | | |-- login.html
-      | | |-- update_menu.html
-      | | |-- tasks.html
-      | | |-- add_task.html
-      | | |-- update_task.html
-      |-- .env
+    |-- bag
+      |--migrations
+      |--templates
+        |--bag.html
+      |--admin.py
+      |--contexts.py
+      |--models.
+      |--urls.py
+      |--views.py
+    |-- booking
+      |-- settings.py
+      |-- urls.py
+      |-- views.py
+    |-- checkout/ 
+      | |-- checkout
+      | | |-- css/
+      | |   |-- checkout.css
+      | | |-- js/
+      | |    |-- stripe_elements.js
+      | |-- templates
+      | | |-- checkout
+      | | |   |-- checkout.html
+      | | |   |-- checkout_success.html
+      | |-- admin.py
+      | |-- models.py
+      | |-- urls.py
+      | |-- views.py
+    |-- home
+      |--templates
+        |-- index.html
+      |--admin.py
+      |--models.py
+      |--urls.py
+      |--views.py
+    |--media/
+    |--products
+    | |--fixtures/
+    | | |--categories.json
+    | | |--products.json
+    | |--templates
+    | | |--product_detail.html
+    | | |--products.html
+    | |--models.py
+    | |--urls.py
+    | |--views.py
+    |--profiles/
+    |--static/
+    |--staticfiles
+    |--templates
+    |--gitignore
+    |--env.py
+    |--manage.py
+    |--Procfile
+    |--requirements.txt
       
     ---  
     
  ## [Testing and Validation](#testing-and-validation)
 
- The HTML and CSS coding was tested on https://validator.w3.org
-
- ![CSS validation!](taskmanager/static/images/css_valid.png "CSS validation")
-
- Javascript validation. The javascript files have been checked on www.jshint.com. 
-
- ![Javascript validation!](taskmanager/static/images/js_valid.png "Javascript validation")
-
- Javascript validation
-
- ![Javascript validation!](taskmanager/static/images/js_valid1.png "Javascript validation")
-
----
-Form submission validation. Form submission using Javascript.
-
-![Email successfully submitted!](taskmanager/static/images/email_valid.png "Email successfully submitted!")
-Validation from emaijs.com
-
-![Form submission validation!](taskmanager/static/images/form_test.png "Form submission validation")
-
- Python validation
-
- ![Python validation!](taskmanager/static/images/pyt_valid.png "Python validation")
- 
----
-
-The page is tested on different browsers Chrome, Firefox, Safari, Opera. The page is responsive and contains all the functions accross differenr screens and sizes. The accessibility testing.
-For testing accesibility and SEO and Best Practices, I used Lighthouse in Dev tools. 
-Lighthouse runs an audit of your website and feeds back a set of scores for accessibility, SEO and best practices among others.
-
-![Checked on lighthouse!](taskmanager/static/images/performance.png "Python validation")
-
+** This site has not been tested for anything as many functionalities have not been implemented.**
 ---
 ## [Bugs and Issues](#bugs-and-issues)
 
@@ -232,21 +225,16 @@ The error stripe.PaymentIntent.create disappeared now the terminal givs another 
 ## [404.html](#notfound-page)
 
 
-      @app.route("/update_task/<int:task_id>", methods=["GET", "POST"])
-      def update_task(task_id):
-        task = Task.query.get_or_404(task_id)
-        if request.method == "POST":
-        task.task_name = request.form.get("task_name")
-        task.task_description = request.form.get("task_description")
-        task.is_urgent = True if request.form.get("is_urgent") else False
-        due_date_str = request.form.get("due_date")
-
-
-        
-       task = Task.query.get_or_404(task_id)
+      <body>
+    <div class="container">
+        <h1>404 - Page Not Found</h1>
+        <p>Sorry, the page you're looking for doesn't exist.</p>
+        <a href="{% url 'home' %}" class="btn">Back to Home</a>
+    </div>
+</body>
    
-This line attempts to fetch a Task object from the database using the task_id. If the task_id does not exist in the database, Flask will automatically return a 404 Not Found error.
-If we have a task with task_id=1 in database. When visiting /update_task/1, the application should work correctly. However, if you visit /update_task/100 and there is no task with task_id=100, the Task.query.get_or_404(100) will trigger a 404 response.
+Django only shows the custom 404 page when DEBUG = False in settings.py file. When DEBUG = True, Django shows its default, detailed error page to help with development.
+If a user tries to visit a URL that does not exist or is not mapped to any view in urls.py file, Django will return a 404 status code, which triggers the 404.html template.
 
  - ---
 
@@ -289,21 +277,21 @@ To deploy Your App to Heroku, you have to :
 
 ## [Credits](#credits)
 
- The idea for the bootstrap design was taken from https://www.w3schools.com/.
+ The idea for the bootstrap design was taken from boutique-ado lesson from codeinstitute course for full-stack developpers. The boutique-ado lectures were used as a follow through and for the functionality implementation.
  
- This site was build with the help of www.chatgpt.com, but most important with the lectures of www.codeinstitute.net and namly the lectures for emailjs.com and the task application.
+ This site was build with the help of www.chatgpt.com, but most important with the lectures of www.codeinstitute.net and namly the tutors of the codeinstitute which are experienced and can be very helpful.
  
- Pictures recepies and links for the pictures were taken from www.bgtown.com
+ Pictures were taken from pexels.com
  
  Some of the styling was made with the help of www.bootstrap.com 
  
- The chef's logo was taken free from https://logo.com/
+ The icons were taken from fonr awesome.com
  
  The photos were taken from www.pexels.com
  
-The idea for the site was accepted from the Code Institute reccomendation for project 4. 
+The idea for the site was accepted from the Code Institute reccomendation for project 5. 
 
-This side is used with the help of Codeacademy's course and the help of the tutors and facilitators, and mentors. Special thanks to facilitator Laura for sending me useful links for testing, thanks to my tutor Mr. Medale.
+This side is used with the help of Codeacademy's course and the help of the tutors and facilitators, and mentors. Special thanks to facilitator Laura.
 
 [Back to top](#wireframe)
 

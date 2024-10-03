@@ -34,7 +34,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 SECRET_KEY = 'django-insecure-gq_@z5ot#b#h*^!1-nbp4ply))o^8nj+@x-866gjubu9ydh*+d'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [ 'lasthotel-8f638c1487e4.herokuapp.com', '8000-kamenco-hotels-wdkmicfp65i.ws.codeinstitute-ide.net', 'localhost',]
 
@@ -243,8 +243,8 @@ STRIPE_SECRET_KEY=os.environ.get('STRIPE_SECRET_KEY')
 # AWS S3 Settings
 AWS_ACCESS_KEY_ID = '<your_aws_access_key_id>'
 AWS_SECRET_ACCESS_KEY = '<your_aws_secret_access_key>'
-AWS_STORAGE_BUCKET_NAME = '<your_bucket_name>'
-AWS_S3_REGION_NAME = '<your_aws_region>'  # e.g., 'us-west-1'
+AWS_STORAGE_BUCKET_NAME = 'arn:aws:s3:::kamenbucket'
+AWS_S3_REGION_NAME = 'eu-north-1'  # e.g., 'us-west-1'
 
 # Optional settings
 AWS_S3_FILE_OVERWRITE = False  # Avoid overwriting files with the same name
@@ -253,4 +253,7 @@ AWS_S3_SIGNATURE_VERSION = 's3v4'
 AWS_QUERYSTRING_AUTH = False  # Optional: to remove query parameter from file URL
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-STATIC_URL = f'https://{kamenbucket}.s3.amazonaws.com/static/'
+
+STATIC_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/static/'
+
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME', 'your-s3-bucket-name')
